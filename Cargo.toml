@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 ahash = "0.8.11"
 blake2 = "0.10.6"
+blake3 = "1.5.1"
 md5 = "0.7.0"
 once_cell = "1.19.0"
 rand = "0.8.5"
