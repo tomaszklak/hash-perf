@@ -1,4 +1,5 @@
 use ahash::RandomState;
+use blake2::{Blake2s256, Digest as _};
 use once_cell::sync::Lazy;
 use sha2::{Digest, Sha256};
 use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
@@ -37,6 +38,20 @@ pub fn hash_ip_sha256(ip: &IpAddr) -> u32 {
 }
 pub fn hash_str_sha256(ip: &str) -> u32 {
     let mut hasher = Sha256::new();
+    hasher.update(ip);
+    u32::from_ne_bytes(hasher.finalize()[..4].try_into().unwrap())
+}
+
+pub fn hash_ip_blake2s256(ip: &IpAddr) -> u32 {
+    let mut hasher = Blake2s256::new();
+    match ip {
+        IpAddr::V4(ip) => hasher.update(&ip.octets()),
+        IpAddr::V6(ip) => hasher.update(&ip.octets()),
+    }
+    u32::from_ne_bytes(hasher.finalize()[..4].try_into().unwrap())
+}
+pub fn hash_str_blake2s256(ip: &str) -> u32 {
+    let mut hasher = Blake2s256::new();
     hasher.update(ip);
     u32::from_ne_bytes(hasher.finalize()[..4].try_into().unwrap())
 }
