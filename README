@@ -1,0 +1,8 @@
+ahash                   time:   [2.3739 µs 2.3794 µs 2.3858 µs]
+md5                     time:   [105.67 µs 106.12 µs 106.65 µs]
+sha256                  time:   [172.21 µs 172.76 µs 173.49 µs]
+blake2s256              time:   [102.15 µs 102.41 µs 102.75 µs]
+str_ahash               time:   [3.5242 µs 3.6459 µs 3.7575 µs]
+str_md5                 time:   [106.67 µs 106.76 µs 106.85 µs]
+str_sha256              time:   [175.54 µs 175.74 µs 175.94 µs]
+str_blake2s256          time:   [102.17 µs 102.29 µs 102.41 µs]
